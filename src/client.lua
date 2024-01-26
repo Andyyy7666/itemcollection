@@ -23,3 +23,9 @@ exports.ox_target:addGlobalObject({{
         end
     end
 }})
+
+AddStateBagChangeHandler("vehiclesAvoidProp", nil, function(bagName, key, value, reserved, replicated)
+    local entity = GetEntityFromStateBagName(bagName)
+    if not DoesEntityExist(entity) or NetworkGetEntityOwner(entity) ~= cache.playerId then return end
+    SetObjectForceVehiclesToAvoid(entity, value)
+end)
