@@ -37,5 +37,9 @@ exports("use", function(event, item, inventory, slot, data)
         while not DoesEntityExist(entity) and os.time()-time < 5 do Wait(0) end
         SetEntityHeading(entity, heading)
         FreezeEntityPosition(entity, true)
+        if vehiclesWillAvoid then
+            local state = Entity(entity).state
+            state.vehiclesAvoidProp = true
+        end
     end
 end)
